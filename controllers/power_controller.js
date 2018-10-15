@@ -11,7 +11,7 @@ class PowerController {
 
 		let planTime = new Date().getTime() + time*60*1000;
 		ApplicationController.schedule(`Sleep`, ()=> {
-			// cmd.run(system.getMethod('sleep'))
+			cmd.run(system.getMethod('sleep'))
 			// cmd.run("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
 		},planTime)
 		
@@ -25,7 +25,7 @@ class PowerController {
 		let planTime = new Date().getTime() + time*60*1000;
 		console.log("Here")
 		ApplicationController.schedule(`Shutdown`, ()=> {
-			// cmd.run(system.getMethod('shutdown'))
+			cmd.run(system.getMethod('shutdown'))
 			// cmd.run("rundll32.exe powrprof.dll,SetSuspendState 0,1,0")
 		},planTime)
 		
