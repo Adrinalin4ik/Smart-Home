@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Home AI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link rel='stylesheet' href='/stylesheets/materialize.min.css' />
+  </head>
+  <body>
+    <div>
+      <div class="row">
+        <%if (queue.length != 0) { %>
+          <div class="col s12">
+            <ul class="collection with-header">
+              <li class="collection-header"><h4>Tasks queue</h4></li>
+              <%queue.forEach(task => {%>
+                <li class="collection-item">
+                  <%=task.title%> (<%=Math.round(((task.time- new Date())/1000/60),2)%> min.)
+                  <a href="/removeTask/<%=task.id%>" class="secondary-content"><i class="material-icons">close</i></a>
+                </li>
+              <%})%>
+              
+            </ul>
+          </div>
+        <%}%>
+        <div class="col s12 m2">
+          <div class="card-panel teal">
+            <h5 class="card_header">Sleep timer</h5>
+            <form action="/power/sleep" method="post">
+            	<input name="time" type="number" placeholder="Minutes" />
+            	<button type="submit" class="waves-effect waves-light btn" onclick="confirmation()">OK</button>
+            </form>
+          </div>
+        </div>
+        <div class="col s6 m2">
+          <a href="/open/app/youtube">
+            <div class="card-panel teal">
+              <div class="app_title">Youtube</div>
+            </div>
+          </a>
+        </div>
+        <div class="col s6 m2">
+          <a href="/open/app/vk">
+            <div class="card-panel teal">
+              <div class="app_title">VK</div>
+            </div>
+          </a>
+        </div>
+        <div class="col s6 m2">
+          <a href="/open/app/mail">
+            <div class="card-panel teal">
+              <div class="app_title">Mail</div>
+            </div>
+          </a>
+        </div>
+        <div class="col s6 m2">
+          <a href="/open/app/telegram">
+            <div class="card-panel teal">
+              <div class="app_title">Telegram</div>
+            </div>
+          </a>
+        </div>
+        <div class="col s12 m2">
+          <div class="card-panel teal">
+            <h5 class="card_header">Shutdown timer</h5>
+            <form action="/power/shutdown" method="post">
+              <input name="time" type="number" placeholder="Minutes" />
+              <button type="submit" class="waves-effect waves-light btn" onclick="confirmation()">OK</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+<script>
+  function confirmation(e){
+    var result = confirm("Вы уверены?");
+    
+    if (!result) {
+      event.preventDefault();
+      return false;
+    }
+
+    return true
+  }
+</script>
