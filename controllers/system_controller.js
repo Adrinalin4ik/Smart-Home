@@ -3,7 +3,7 @@ class System {
 		this.os = process.platform;
 		this.commands = {
 			sleep:{
-				windows:"test",
+				windows:"rundll32.exe powrprof.dll,SetSuspendState 0,1,0",
 				linux:""
 			},
 			shutdown:{
